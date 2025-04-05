@@ -1,0 +1,3 @@
+This is the rock paper scissors project, it's the first js project soo.... 
+
+YIEEPYYYYYY   :-)
