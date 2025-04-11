@@ -22,32 +22,43 @@ function getComputerChoice()
     }
 }
 
-function getHumanChoice ()
+function playRound (e)
 {
-    return prompt("Choose rock, paper or scissors");
-}
+    humanChoice=e.target.textContent;
+    computerChoice= getComputerChoice();
 
-function playRound (humanChoice,computerChoice)
-{
+    if (humanScore >=5 || computerScore>=5)
+    {
+        score[0].textContent= "Finish!";
+        humanScore=0;
+        computerScore=0;
+        score[1].textContent=("Your Score is: "+ humanScore);
+        score[2].textContent=("Computer Score is: "+ computerScore);
+        return ;
+    }
     if (humanChoice==computerChoice)
     {
-        return "It's a tie!";
+        score[0].textContent= "Tie!";
     }
     else if (humanChoice=="rock" && computerChoice=="scissors" || humanChoice=="paper" && computerChoice=="rock" || humanChoice=="scissors" && computerChoice=="paper")
         {
             humanScore++;
-            return "You win!";
+            score[0].textContent= "You win!";
+            score[1].textContent=("Your Score is: "+ humanScore);
+            console.log("You win!, your score is "+ humanScore + " / " + computerScore);
         }
     else
         {
             computerScore++;
-            return "You lose!";
+            score[0].textContent= "You Lose!";
+            score[2].textContent=("Computer Score is: "+ computerScore);
+            console.log("You lose!, your score is "+ humanScore + " / " + computerScore);        
         }     
 }
 
-function playGame ()
+/*function playGame ()
 {
-    for (let i=0; i<4; i++)
+    for (let i=0; i<5; i++)
     {
         humanChoice=getHumanChoice().toLowerCase();
         computerChoice=getComputerChoice();
@@ -58,4 +69,16 @@ function playGame ()
 }
 
 
-playGame();
+playGame();*/
+
+
+
+const btn = document.querySelectorAll("button");
+
+btn.forEach(btn =>  {
+    btn.addEventListener("click", playRound);
+})
+
+
+const score = document.querySelectorAll("h1");
+
